@@ -16,7 +16,8 @@
   "scripts": {
     "build": "tsup",
     "build:watch": "tsup --watch",
-    "test": "bun test ./src/**/**/*.test.ts"
+    "test": "bun test ./src/**/**/*.test.ts",
+    "test:colors": "bun test ./src/colors/**/*.test.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
