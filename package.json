@@ -1,0 +1,28 @@
+{
+  "name": "@miniqui/utils",
+  "module": "index.ts",
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    "./colors/*": {
+      "import": "./dist/colors/*.js",
+      "types": "./dist/colors/*.d.ts"
+    },
+    "./numbers/*": {
+      "import": "./dist/numbers/*.js",
+      "types": "./dist/numbers/*.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "test": "bun test ./src/**/**/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsup": "^8.3.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
