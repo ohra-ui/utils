@@ -4,14 +4,14 @@
   "files": ["dist"],
   "exports": {
     "./colors/*": {
+      "types": "./dist/colors/*.d.ts",
       "import": "./dist/colors/*.js",
-      "require": "./dist/colors/*.cjs",
-      "types": "./dist/colors/*.d.ts"
+      "require": "./dist/colors/*.cjs"
     },
     "./numbers/*": {
+      "types": "./dist/numbers/*.d.ts",
       "import": "./dist/numbers/*.js",
-      "require": "./dist/colors/*.cjs",
-      "types": "./dist/numbers/*.d.ts"
+      "require": "./dist/colors/*.cjs"
     }
   },
   "scripts": {
