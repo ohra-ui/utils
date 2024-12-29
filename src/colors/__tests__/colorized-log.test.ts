@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from '@jest/globals'
 import { colorizeLog } from '../colorize-log'
 
 test('colorizeLog: blue foreground', () => {

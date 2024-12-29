@@ -67,6 +67,5 @@ export function numberToText_ID(
   if (positiveNumber < 1000000000000000000) {
     return `${prefix + numberToText_ID(Math.floor(positiveNumber / 1000000000000000))} kuadriliun ${numberToText_ID(positiveNumber % 1000000000000000)}`.trim()
   }
-  console.warn('numberToText_ID: number is too large')
   return '>> angka terlalu besar'
 }

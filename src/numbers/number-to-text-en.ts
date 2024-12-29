@@ -69,6 +69,5 @@ export function numberToText_EN(
   if (positiveNumber < 1000000000000000000) {
     return `${prefix}${numberToText_EN(Math.floor(positiveNumber / 1000000000000000))} quadrillion ${numberToText_EN(positiveNumber % 1000000000000000)}`.trim()
   }
-  console.warn('numberToText_EN: number is too large')
   return '>> number is too large'
 }
