@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from '@jest/globals'
 import { numberToText } from '../number-to-text'
 
 test('numberToText one and zeros', () => {
@@ -20,7 +20,7 @@ test('numberToText one and zeros', () => {
   expect(numberToText(1000000000000000)).toBe('one quadrillion')
   expect(numberToText(10000000000000000)).toBe('ten quadrillion')
   expect(numberToText(100000000000000000)).toBe('one hundred quadrillion')
-  expect(numberToText(1000000000000000000)).toInclude('>>')
+  expect(numberToText(1000000000000000000)).toContain('>>')
 })
 
 test('numberToText all positive numbers', () => {
@@ -62,7 +62,7 @@ test('numberToText all positive numbers', () => {
   // biome-ignore lint/correctness/noPrecisionLoss: numberToText using Math.abs to avoid precision loss until 16 digits
   expect(numberToText(99999999999999999)).toBe('one hundred quadrillion')
   // biome-ignore lint/correctness/noPrecisionLoss: numberToText using Math.abs to avoid precision loss until 16 digits
-  expect(numberToText(999999999999999999)).toInclude('>>')
+  expect(numberToText(999999999999999999)).toContain('>>')
 })
 
 test('numberToText one and zeros with option.lang: id', () => {
@@ -85,7 +85,7 @@ test('numberToText one and zeros with option.lang: id', () => {
   expect(numberToText(1000000000000000, opt)).toBe('satu kuadriliun')
   expect(numberToText(10000000000000000, opt)).toBe('sepuluh kuadriliun')
   expect(numberToText(100000000000000000, opt)).toBe('seratus kuadriliun')
-  expect(numberToText(1000000000000000000, opt)).toInclude('>>')
+  expect(numberToText(1000000000000000000, opt)).toContain('>>')
 })
 
 test('numberToText all positive numbers with option.lang: id', () => {
@@ -132,5 +132,5 @@ test('numberToText all positive numbers with option.lang: id', () => {
   // biome-ignore lint/correctness/noPrecisionLoss: numberToText using Math.abs to avoid precision loss until 16 digits
   expect(numberToText(99999999999999999, opt)).toBe('seratus kuadriliun')
   // biome-ignore lint/correctness/noPrecisionLoss: numberToText using Math.abs to avoid precision loss until 16 digits
-  expect(numberToText(999999999999999999, opt)).toInclude('>>')
+  expect(numberToText(999999999999999999, opt)).toContain('>>')
 })

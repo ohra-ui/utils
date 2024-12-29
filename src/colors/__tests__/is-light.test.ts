@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from '@jest/globals'
 import { isLight } from '../is-light'
 
 test('isLight on black and white', () => {

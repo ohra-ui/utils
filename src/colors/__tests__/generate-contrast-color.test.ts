@@ -1,4 +1,4 @@
-import { expect, test } from 'bun:test'
+import { expect, test } from '@jest/globals'
 import { colorizeLog } from '../colorize-log'
 import { generateContrastColor } from '../generate-contrast-color'
 
