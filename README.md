@@ -1,1 +1,0 @@
-# @miniqui/utils
