@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "build:watch": "tsup --watch",
+    "build:watch": "tsup --watch --no-minify",
     "test": "jest",
     "test:colors": "jest ./src/colors/**/*.test.ts",
     "test:numbers": "jest ./src/numbers/**/*.test.ts"
