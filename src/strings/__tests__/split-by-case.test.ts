@@ -83,6 +83,9 @@ describe('splitByCase', () => {
         'Case',
         'String',
       ])
+      expect(
+        splitByCase('camelCase snake_case kebab-case PascalCase', { preserveCase: true }),
+      ).toEqual(['camel', 'Case', 'snake', 'case', 'kebab', 'case', 'Pascal', 'Case'])
     })
   })
 
