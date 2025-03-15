@@ -1,5 +1,5 @@
 {
-  "name": "@miniqui/utils",
+  "name": "@ohra-ui/utils",
   "module": "index.ts",
   "files": ["dist"],
   "exports": {

@@ -1,1 +1,1 @@
-# @miniqui/utils
+# @ohra-ui/utils
