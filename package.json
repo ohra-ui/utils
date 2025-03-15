@@ -17,6 +17,7 @@
   "scripts": {
     "build": "tsup",
     "build:watch": "tsup --watch --no-minify",
+    "check": "biome check --write",
     "format": "biome format --write",
     "test": "jest",
     "test:colors": "jest ./src/colors/**/*.test.ts",
