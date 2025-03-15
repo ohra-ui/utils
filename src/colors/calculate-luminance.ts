@@ -6,7 +6,11 @@
  * @param {number} rgb.b - The blue component (0-255).
  * @returns {number} The luminance value (0-1).
  */
-export function calculateLuminance(rgb: { r: number; g: number; b: number }): number {
+export function calculateLuminance(rgb: {
+  r: number
+  g: number
+  b: number
+}): number {
   // Normalize RGB values to a range of 0 to 1
   const r = rgb.r / 255
   const g = rgb.g / 255
