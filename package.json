@@ -12,6 +12,11 @@
       "types": "./dist/numbers/*.d.ts",
       "import": "./dist/numbers/*.js",
       "require": "./dist/colors/*.cjs"
+    },
+    "./strings/*": {
+      "types": "./dist/strings/*.d.ts",
+      "import": "./dist/strings/*.js",
+      "require": "./dist/strings/*.cjs"
     }
   },
   "scripts": {
