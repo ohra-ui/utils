@@ -9,6 +9,9 @@
  * splitPascalCase('Hello') // ['Hello']
  *
  * @param {string} str - The PascalCase string to split.
+ * @param {Object} options - Options for splitting.
+ * @param {boolean} options.preserveNumbers - Whether to preserve numbers as part of words. Default is true.
+ * @param {boolean} options.preserveSpecials - Whether to preserve special characters as part of words. Default is true.
  * @returns {string[]} An array of words.
  */
 import { splitCamelCase } from './split-camel-case'
