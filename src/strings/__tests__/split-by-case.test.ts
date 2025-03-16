@@ -196,10 +196,10 @@ describe('splitByCase', () => {
     })
   })
 
-  describe('preserveAcronym option', () => {
+  describe('preserveAcronyms option', () => {
     it('should preserve acronyms as single segments when specified', () => {
-      expect(splitByCase('APIVersion', { preserveAcronym: true })).toEqual(['API', 'version'])
-      expect(splitByCase('parseHTMLContent', { preserveAcronym: true })).toEqual([
+      expect(splitByCase('APIVersion', { preserveAcronyms: true })).toEqual(['API', 'version'])
+      expect(splitByCase('parseHTMLContent', { preserveAcronyms: true })).toEqual([
         'parse',
         'HTML',
         'content',
@@ -207,12 +207,12 @@ describe('splitByCase', () => {
     })
 
     it('should handle acronyms in different positions', () => {
-      expect(splitByCase('APIVersionHTTP', { preserveAcronym: true })).toEqual([
+      expect(splitByCase('APIVersionHTTP', { preserveAcronyms: true })).toEqual([
         'API',
         'version',
         'HTTP',
       ])
-      expect(splitByCase('userAPIProfile', { preserveAcronym: true })).toEqual([
+      expect(splitByCase('userAPIProfile', { preserveAcronyms: true })).toEqual([
         'user',
         'API',
         'profile',
@@ -220,32 +220,32 @@ describe('splitByCase', () => {
     })
 
     it('should handle consecutive acronyms', () => {
-      expect(splitByCase('APIHTTP', { preserveAcronym: true })).toEqual(['APIHTTP'])
+      expect(splitByCase('APIHTTP', { preserveAcronyms: true })).toEqual(['APIHTTP'])
     })
 
     it('should preserve case of acronyms even when preserveCase is false', () => {
       expect(
-        splitByCase('parseHTMLContent', { preserveAcronym: true, preserveCase: false }),
+        splitByCase('parseHTMLContent', { preserveAcronyms: true, preserveCase: false }),
       ).toEqual(['parse', 'HTML', 'content'])
     })
   })
 
   describe('combined options', () => {
-    it('should handle preserveNumbers and preserveAcronym together', () => {
+    it('should handle preserveNumbers and preserveAcronyms together', () => {
       expect(
-        splitByCase('API123Version', { preserveNumbers: true, preserveAcronym: true }),
+        splitByCase('API123Version', { preserveNumbers: true, preserveAcronyms: true }),
       ).toEqual(['API', '123', 'version'])
       expect(
-        splitByCase('user42APIProfile', { preserveNumbers: true, preserveAcronym: true }),
+        splitByCase('user42APIProfile', { preserveNumbers: true, preserveAcronyms: true }),
       ).toEqual(['user', '42', 'API', 'profile'])
     })
 
-    it('should handle preserveCase, preserveNumbers, and preserveAcronym together', () => {
+    it('should handle preserveCase, preserveNumbers, and preserveAcronyms together', () => {
       expect(
         splitByCase('User42APIProfile', {
           preserveCase: true,
           preserveNumbers: true,
-          preserveAcronym: true,
+          preserveAcronyms: true,
         }),
       ).toEqual(['User', '42', 'API', 'Profile'])
     })
@@ -278,8 +278,8 @@ describe('splitByCase', () => {
     })
 
     it('should handle strings with only acronyms', () => {
-      expect(splitByCase('API', { preserveAcronym: true })).toEqual(['API'])
-      expect(splitByCase('HTMLCSSJS', { preserveAcronym: true })).toEqual(['HTMLCSSJS'])
+      expect(splitByCase('API', { preserveAcronyms: true })).toEqual(['API'])
+      expect(splitByCase('HTMLCSSJS', { preserveAcronyms: true })).toEqual(['HTMLCSSJS'])
     })
   })
 })

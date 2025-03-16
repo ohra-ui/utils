@@ -10,14 +10,14 @@ export type CaseFormat = 'camel' | 'pascal' | 'snake' | 'kebab' | 'auto'
  * @property {CaseFormat} format - The case format to detect (default: 'auto')
  * @property {boolean} preserveCase - Preserve the original case of each word (default: false)
  * @property {boolean} preserveNumbers - Preserve numbers as separate segments (default: false)
- * @property {boolean} preserveAcronym - Preserve acronyms as single segments (default: false)
+ * @property {boolean} preserveAcronyms - Preserve acronyms as single segments (default: false)
  * @property {boolean} trim - Trim the input string before splitting (default: true)
  */
 export type SplitByCaseOptions = {
   format?: CaseFormat
   preserveCase?: boolean
   preserveNumbers?: boolean
-  preserveAcronym?: boolean
+  preserveAcronyms?: boolean
   trim?: boolean
 }
 
@@ -57,7 +57,7 @@ function detectCaseFormat(str: string): CaseFormat {
  * @param {string} str - The string to check
  * @returns {boolean} True if the string is an acronym
  */
-function isAcronym(str: string): boolean {
+export function isAcronym(str: string): boolean {
   return /^[A-Z]{2,}$/.test(str)
 }
 
@@ -74,7 +74,7 @@ function splitByNumbers(str: string): string[] {
 /**
  * Splits a camelCase or PascalCase string with acronym preservation
  * @param {string} str - The string to split
- * @param {boolean} preserveAcronym - Whether to preserve acronyms
+ * @param {boolean} preserveAcronyms - Whether to preserve acronyms
  * @returns {string[]} Array of segments
  */
 function splitCamelOrPascalWithAcronyms(str: string): string[] {
@@ -126,7 +126,7 @@ function splitCamelOrPascalWithAcronyms(str: string): string[] {
  * @param {CaseFormat} format - The case format to use for splitting.
  * @param {boolean} preserveCase - Whether to preserve the original case.
  * @param {boolean} preserveNumbers - Whether to preserve numbers as separate segments.
- * @param {boolean} preserveAcronym - Whether to preserve acronyms as single segments.
+ * @param {boolean} preserveAcronyms - Whether to preserve acronyms as single segments.
  * @returns {string[]} An array of strings split by case format.
  */
 function splitStringByCase(
@@ -134,12 +134,12 @@ function splitStringByCase(
   format: CaseFormat,
   preserveCase: boolean,
   preserveNumbers: boolean,
-  preserveAcronym: boolean,
+  preserveAcronyms: boolean,
 ): string[] {
   if (!str) return []
 
   // Special case for strings that are entirely acronyms
-  if (preserveAcronym && isAcronym(str)) {
+  if (preserveAcronyms && isAcronym(str)) {
     return [str]
   }
 
@@ -156,20 +156,20 @@ function splitStringByCase(
         segments.push(part)
       } else {
         // Otherwise, process it based on the format
-        const subSegments = processByFormat(part, format, preserveAcronym)
+        const subSegments = processByFormat(part, format, preserveAcronyms)
         segments.push(...subSegments)
       }
     }
   } else {
     // Standard processing without preserving numbers
-    segments = processByFormat(str, format, preserveAcronym)
+    segments = processByFormat(str, format, preserveAcronyms)
   }
 
   // Apply case transformation
   if (!preserveCase) {
     segments = segments.map((segment) => {
-      // If preserveAcronym is true and the segment is an acronym, keep it uppercase
-      if (preserveAcronym && isAcronym(segment)) {
+      // If preserveAcronyms is true and the segment is an acronym, keep it uppercase
+      if (preserveAcronyms && isAcronym(segment)) {
         return segment
       }
       return segment.toLowerCase()
@@ -183,14 +183,14 @@ function splitStringByCase(
  * Process a string segment based on its format
  * @param {string} segment - The string segment to process
  * @param {CaseFormat} format - The case format to use
- * @param {boolean} preserveAcronym - Whether to preserve acronyms
+ * @param {boolean} preserveAcronyms - Whether to preserve acronyms
  * @returns {string[]} Processed segments
  */
-function processByFormat(segment: string, format: CaseFormat, preserveAcronym: boolean): string[] {
+function processByFormat(segment: string, format: CaseFormat, preserveAcronyms: boolean): string[] {
   switch (format) {
     case 'camel':
     case 'pascal':
-      if (preserveAcronym) {
+      if (preserveAcronyms) {
         return splitCamelOrPascalWithAcronyms(segment)
       }
       return segment.split(/(?=[A-Z])/)
@@ -202,7 +202,7 @@ function processByFormat(segment: string, format: CaseFormat, preserveAcronym: b
       // Detect format and recursively call with the detected format
       const detectedFormat = detectCaseFormat(segment)
       if (detectedFormat !== 'auto') {
-        return processByFormat(segment, detectedFormat, preserveAcronym)
+        return processByFormat(segment, detectedFormat, preserveAcronyms)
       }
       // If we can't detect a specific format, just return the string as is
       return [segment]
@@ -224,7 +224,7 @@ export function splitByCase(str: string, options: SplitByCaseOptions = {}): stri
     format = 'auto',
     preserveCase = false,
     preserveNumbers = false,
-    preserveAcronym = false,
+    preserveAcronyms = false,
     trim = true,
   } = options
 
@@ -239,7 +239,7 @@ export function splitByCase(str: string, options: SplitByCaseOptions = {}): stri
       format,
       preserveCase,
       preserveNumbers,
-      preserveAcronym,
+      preserveAcronyms,
     )
     result.push(...caseSegments)
   }
